@@ -11,9 +11,28 @@ public enum UpdatePriority {
     case major, minor, patch, none
 }
 
-public typealias UpdateAppHandler = (_ needUpdate: UpdatePriority, _ error: Error?) -> Void
+public typealias UpdateAppResult = (updatePriority: UpdatePriority, error: Error?)
+public typealias UpdateAppHandler = (_ result: UpdateAppResult) -> Void
 
-public final class AKUpdateManager {
+protocol AKUpdateManagerProtocol {
+    var storeLink: String? { get }
+    var currentVersion: AppVersion? { get }
+    func openStoreLink()
+    func checkForUpdates(showDefaultAlert: Bool) async -> UpdateAppResult
+    func checkForUpdates(_ completion: UpdateAppHandler?)
+}
+
+extension AKUpdateManagerProtocol {
+    func checkForUpdates() async -> UpdateAppResult {
+        await checkForUpdates(showDefaultAlert: false)
+    }
+
+    func checkForUpdates() {
+        checkForUpdates(nil)
+    }
+}
+
+public final class AKUpdateManager: AKUpdateManagerProtocol {
     public static let shared = AKUpdateManager()
 
     public var storeLink: String? {
@@ -28,7 +47,7 @@ public final class AKUpdateManager {
         return AppVersion(version: currentVersionStr)
     }
 
-    var defaultHandler: UpdateAppHandler = { updatePriority, error in
+    var defaultHandler: UpdateAppHandler = { result in
         guard let window = UIApplication.shared.delegate?.createUpdaterWindow() else { return }
         let alert = UIAlertController(
             title: "App needs update",
@@ -41,10 +60,10 @@ public final class AKUpdateManager {
             alert.hide(in: window)
         }
         alert.addAction(updateAction)
-        if updatePriority != .major {
+        if result.updatePriority != .major {
             alert.addAction(delayAction)
         }
-        guard updatePriority != .none else { return }
+        guard result.updatePriority != .none else { return }
         alert.show(in: window)
     }
 
@@ -57,14 +76,14 @@ public final class AKUpdateManager {
     /// Check if the app needs updates.
     @discardableResult public func checkForUpdates(
         showDefaultAlert: Bool = false
-    ) async -> (needUpdate: UpdatePriority, error: Error?) {
+    ) async -> UpdateAppResult {
         let updateInfo = await withCheckedContinuation { continuation in
-            checkForUpdates { needUpdate, error in
-                continuation.resume(returning: (needUpdate: needUpdate, error: error))
+            checkForUpdates { updateInfo in
+                continuation.resume(returning: updateInfo)
             }
         }
         if showDefaultAlert {
-            defaultHandler(updateInfo.needUpdate, updateInfo.error)
+            defaultHandler(updateInfo)
         }
         return updateInfo
     }
@@ -74,27 +93,27 @@ public final class AKUpdateManager {
         let completion = completion ?? defaultHandler
         guard let currentVersion = currentVersion,
               let storeLink = storeLink,
-              let url = URL(string: storeLink) else { return completion(.none, nil) }
+              let url = URL(string: storeLink) else { return completion((.none, nil)) }
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             do {
                 if let error = error {
-                    return completion(.none, error)
+                    return completion((updatePriority: .none, error: error))
                 }
-                guard let data = data else { return completion(.none, nil) }
+                guard let data = data else { return completion((.none, nil)) }
                 let json = try JSONSerialization.jsonObject(
                     with: data,
                     options: [.allowFragments]
                 ) as? [String: Any]
                 let result = (json?["results"] as? [Any])?.first as? [String: Any]
-                guard let versionString = result?["version"] as? String else { return completion(.none, nil) }
+                guard let versionString = result?["version"] as? String else { return completion((.none, nil)) }
                 let version = AppVersion(version: versionString)
                 let updatePriority = self?.compareVersions(
                     new: version,
                     current: currentVersion
                 )
-                completion(updatePriority ?? .none, nil)
+                completion((updatePriority: updatePriority ?? .none, error: nil))
             } catch {
-                completion(.none, error)
+                completion((updatePriority: .none, error: error))
             }
         }
         task.resume()
