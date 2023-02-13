@@ -51,8 +51,8 @@ Thankfully, there are no known issues at the moment.
 
 ## Future plans 🧐
 
-1 - Override the default alert strings and actions. [#1](https://github.com/AmrKoritem/AKUpdateManager/issues/2)<br>
-2 - Add a method to show a custom view/viewController instead of the alert. [#2](https://github.com/AmrKoritem/AKUpdateManager/issues/3)<br>
+1 - Override the default alert strings and actions. [#2](https://github.com/AmrKoritem/AKUpdateManager/issues/2)<br>
+2 - Add a method to show a custom view/viewController instead of the alert. [#3](https://github.com/AmrKoritem/AKUpdateManager/issues/3)<br>
 
 ## Find me 🥰
 
