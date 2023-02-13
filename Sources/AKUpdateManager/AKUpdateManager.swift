@@ -48,23 +48,25 @@ public final class AKUpdateManager: AKUpdateManagerProtocol {
     }
 
     var defaultHandler: UpdateAppHandler = { result in
-        guard let window = UIApplication.shared.delegate?.createUpdaterWindow() else { return }
-        let alert = UIAlertController(
-            title: "App needs update",
-            message: "A new update is available now.",
-            preferredStyle: .alert)
-        let updateAction = UIAlertAction(title: "Update", style: .default) { _ in
-            AKUpdateManager.shared.openStoreLink()
+        DispatchQueue.main.async {
+            guard let window = UIApplication.shared.delegate?.createUpdaterWindow() else { return }
+            let alert = UIAlertController(
+                title: "App needs update",
+                message: "A new update is available now.",
+                preferredStyle: .alert)
+            let updateAction = UIAlertAction(title: "Update", style: .default) { _ in
+                AKUpdateManager.shared.openStoreLink()
+            }
+            let delayAction = UIAlertAction(title: "Next time", style: .default) { _ in
+                alert.hide(in: window)
+            }
+            alert.addAction(updateAction)
+            if result.updatePriority != .major {
+                alert.addAction(delayAction)
+            }
+            guard result.updatePriority != .none else { return }
+            alert.show(in: window)
         }
-        let delayAction = UIAlertAction(title: "Next time", style: .default) { _ in
-            alert.hide(in: window)
-        }
-        alert.addAction(updateAction)
-        if result.updatePriority != .major {
-            alert.addAction(delayAction)
-        }
-        guard result.updatePriority != .none else { return }
-        alert.show(in: window)
     }
 
     private init() {}

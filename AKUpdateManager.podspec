@@ -4,7 +4,7 @@ s.name = "AKUpdateManager"
 s.summary = "AKUpdateManager manages your app updates."
 s.requires_arc = true
 
-s.version = "1.0.0"
+s.version = "1.0.1"
 s.license = { :type => "MIT", :file => "LICENSE" }
 s.author = { "Amr Koritem" => "amr.koritem92@gmail.com" }
 s.homepage = "https://github.com/AmrKoritem/AKUpdateManager"
