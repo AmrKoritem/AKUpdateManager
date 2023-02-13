@@ -11,6 +11,7 @@
 		1D287F21299A318D00D3DF79 /* AKUpdateManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D287F16299A318D00D3DF79 /* AKUpdateManager.framework */; };
 		1D287F26299A318D00D3DF79 /* AKUpdateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D287F25299A318D00D3DF79 /* AKUpdateManagerTests.swift */; };
 		1D287F27299A318D00D3DF79 /* AKUpdateManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D287F19299A318D00D3DF79 /* AKUpdateManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D287F33299A31DA00D3DF79 /* AKUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D287F32299A31DA00D3DF79 /* AKUpdateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		1D287F1A299A318D00D3DF79 /* AKUpdateManager.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AKUpdateManager.docc; sourceTree = "<group>"; };
 		1D287F20299A318D00D3DF79 /* AKUpdateManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKUpdateManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D287F25299A318D00D3DF79 /* AKUpdateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKUpdateManagerTests.swift; sourceTree = "<group>"; };
+		1D287F32299A31DA00D3DF79 /* AKUpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKUpdateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +55,8 @@
 		1D287F0C299A318D00D3DF79 = {
 			isa = PBXGroup;
 			children = (
-				1D287F18299A318D00D3DF79 /* AKUpdateManager */,
-				1D287F24299A318D00D3DF79 /* AKUpdateManagerTests */,
+				1D287F30299A319500D3DF79 /* Sources */,
+				1D287F31299A319D00D3DF79 /* Tests */,
 				1D287F17299A318D00D3DF79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,8 +73,7 @@
 		1D287F18299A318D00D3DF79 /* AKUpdateManager */ = {
 			isa = PBXGroup;
 			children = (
-				1D287F19299A318D00D3DF79 /* AKUpdateManager.h */,
-				1D287F1A299A318D00D3DF79 /* AKUpdateManager.docc */,
+				1D287F32299A31DA00D3DF79 /* AKUpdateManager.swift */,
 			);
 			path = AKUpdateManager;
 			sourceTree = "<group>";
@@ -83,6 +84,24 @@
 				1D287F25299A318D00D3DF79 /* AKUpdateManagerTests.swift */,
 			);
 			path = AKUpdateManagerTests;
+			sourceTree = "<group>";
+		};
+		1D287F30299A319500D3DF79 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1D287F18299A318D00D3DF79 /* AKUpdateManager */,
+				1D287F19299A318D00D3DF79 /* AKUpdateManager.h */,
+				1D287F1A299A318D00D3DF79 /* AKUpdateManager.docc */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1D287F31299A319D00D3DF79 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1D287F24299A318D00D3DF79 /* AKUpdateManagerTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D287F1B299A318D00D3DF79 /* AKUpdateManager.docc in Sources */,
+				1D287F33299A31DA00D3DF79 /* AKUpdateManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +416,7 @@
 		1D287F2E299A318D00D3DF79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S84559HK9V;
@@ -412,6 +433,7 @@
 		1D287F2F299A318D00D3DF79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S84559HK9V;
