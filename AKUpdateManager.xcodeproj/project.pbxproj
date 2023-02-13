@@ -12,6 +12,8 @@
 		1D287F26299A318D00D3DF79 /* AKUpdateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D287F25299A318D00D3DF79 /* AKUpdateManagerTests.swift */; };
 		1D287F27299A318D00D3DF79 /* AKUpdateManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D287F19299A318D00D3DF79 /* AKUpdateManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D287F33299A31DA00D3DF79 /* AKUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D287F32299A31DA00D3DF79 /* AKUpdateManager.swift */; };
+		C41A56A548F3EE6E51ACB1F5 /* Pods_AKUpdateManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D11AD2CA745EA0362E2393 /* Pods_AKUpdateManager.framework */; };
+		E00FA7C26141F42BEF6FCB15 /* Pods_AKUpdateManager_AKUpdateManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3014797549FD8B0E92B026 /* Pods_AKUpdateManager_AKUpdateManagerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,12 @@
 		1D287F20299A318D00D3DF79 /* AKUpdateManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKUpdateManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D287F25299A318D00D3DF79 /* AKUpdateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKUpdateManagerTests.swift; sourceTree = "<group>"; };
 		1D287F32299A31DA00D3DF79 /* AKUpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKUpdateManager.swift; sourceTree = "<group>"; };
+		2046DFBEE2ACA80297A42675 /* Pods-AKUpdateManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKUpdateManager.release.xcconfig"; path = "Target Support Files/Pods-AKUpdateManager/Pods-AKUpdateManager.release.xcconfig"; sourceTree = "<group>"; };
+		49D11AD2CA745EA0362E2393 /* Pods_AKUpdateManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKUpdateManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AAA1B969398DF83D71BA902 /* Pods-AKUpdateManager-AKUpdateManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKUpdateManager-AKUpdateManagerTests.release.xcconfig"; path = "Target Support Files/Pods-AKUpdateManager-AKUpdateManagerTests/Pods-AKUpdateManager-AKUpdateManagerTests.release.xcconfig"; sourceTree = "<group>"; };
+		549BE3B371F9B74A46C85D95 /* Pods-AKUpdateManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKUpdateManager.debug.xcconfig"; path = "Target Support Files/Pods-AKUpdateManager/Pods-AKUpdateManager.debug.xcconfig"; sourceTree = "<group>"; };
+		5C3014797549FD8B0E92B026 /* Pods_AKUpdateManager_AKUpdateManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKUpdateManager_AKUpdateManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C54C5DF4AB9CAA3B297E28F /* Pods-AKUpdateManager-AKUpdateManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKUpdateManager-AKUpdateManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-AKUpdateManager-AKUpdateManagerTests/Pods-AKUpdateManager-AKUpdateManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C41A56A548F3EE6E51ACB1F5 /* Pods_AKUpdateManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D287F21299A318D00D3DF79 /* AKUpdateManager.framework in Frameworks */,
+				E00FA7C26141F42BEF6FCB15 /* Pods_AKUpdateManager_AKUpdateManagerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +68,8 @@
 				1D287F30299A319500D3DF79 /* Sources */,
 				1D287F31299A319D00D3DF79 /* Tests */,
 				1D287F17299A318D00D3DF79 /* Products */,
+				80FD2E9F75191BC4098177F1 /* Pods */,
+				EC22ED09AF3C4D8DEBEB18FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +116,27 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		80FD2E9F75191BC4098177F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				549BE3B371F9B74A46C85D95 /* Pods-AKUpdateManager.debug.xcconfig */,
+				2046DFBEE2ACA80297A42675 /* Pods-AKUpdateManager.release.xcconfig */,
+				7C54C5DF4AB9CAA3B297E28F /* Pods-AKUpdateManager-AKUpdateManagerTests.debug.xcconfig */,
+				4AAA1B969398DF83D71BA902 /* Pods-AKUpdateManager-AKUpdateManagerTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EC22ED09AF3C4D8DEBEB18FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49D11AD2CA745EA0362E2393 /* Pods_AKUpdateManager.framework */,
+				5C3014797549FD8B0E92B026 /* Pods_AKUpdateManager_AKUpdateManagerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -122,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D287F2A299A318D00D3DF79 /* Build configuration list for PBXNativeTarget "AKUpdateManager" */;
 			buildPhases = (
+				200BDC03FE3C3A8F27878B4E /* [CP] Check Pods Manifest.lock */,
 				1D287F11299A318D00D3DF79 /* Headers */,
 				1D287F12299A318D00D3DF79 /* Sources */,
 				1D287F13299A318D00D3DF79 /* Frameworks */,
@@ -140,6 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D287F2D299A318D00D3DF79 /* Build configuration list for PBXNativeTarget "AKUpdateManagerTests" */;
 			buildPhases = (
+				41234EF161B3C5D167196998 /* [CP] Check Pods Manifest.lock */,
 				1D287F1C299A318D00D3DF79 /* Sources */,
 				1D287F1D299A318D00D3DF79 /* Frameworks */,
 				1D287F1E299A318D00D3DF79 /* Resources */,
@@ -207,6 +242,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		200BDC03FE3C3A8F27878B4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AKUpdateManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41234EF161B3C5D167196998 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AKUpdateManager-AKUpdateManagerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D287F12299A318D00D3DF79 /* Sources */ = {
@@ -359,6 +441,7 @@
 		};
 		1D287F2B299A318D00D3DF79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 549BE3B371F9B74A46C85D95 /* Pods-AKUpdateManager.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -387,6 +470,7 @@
 		};
 		1D287F2C299A318D00D3DF79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2046DFBEE2ACA80297A42675 /* Pods-AKUpdateManager.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -415,6 +499,7 @@
 		};
 		1D287F2E299A318D00D3DF79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C54C5DF4AB9CAA3B297E28F /* Pods-AKUpdateManager-AKUpdateManagerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -432,6 +517,7 @@
 		};
 		1D287F2F299A318D00D3DF79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AAA1B969398DF83D71BA902 /* Pods-AKUpdateManager-AKUpdateManagerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
