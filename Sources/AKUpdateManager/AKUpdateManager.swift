@@ -16,21 +16,43 @@ public typealias UpdateAppHandler = (_ needUpdate: UpdatePriority, _ error: Erro
 public final class AKUpdateManager {
     public static let shared = AKUpdateManager()
 
+    public var storeLink: String? {
+        let info = Bundle.main.infoDictionary
+        guard let identifier = info?["CFBundleIdentifier"] as? String else { return nil }
+        return "https://itunes.apple.com/lookup?bundleId=\(identifier)"
+    }
+    public var currentVersion: AppVersion? {
+        let info = Bundle.main.infoDictionary
+        let currentVersionStr = info?["CFBundleShortVersionString"] as? String
+        guard let currentVersionStr = currentVersionStr else { return nil }
+        return AppVersion(version: currentVersionStr)
+    }
+
     var defaultHandler: UpdateAppHandler = { updatePriority, error in
+        guard let window = UIApplication.shared.delegate?.createUpdaterWindow() else { return }
         let alert = UIAlertController(
             title: "App needs update",
             message: "A new update is available now.",
             preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(
-                title: "OK",
-                style: .default))
-        guard updatePriority != .none,
-              let window = UIApplication.shared.delegate?.createUpdaterWindow() else { return }
+        let updateAction = UIAlertAction(title: "Update", style: .default) { _ in
+            AKUpdateManager.shared.openStoreLink()
+        }
+        let delayAction = UIAlertAction(title: "Next time", style: .default) { _ in
+            alert.hide(in: window)
+        }
+        alert.addAction(updateAction)
+        if updatePriority != .major {
+            alert.addAction(delayAction)
+        }
+        guard updatePriority != .none else { return }
         alert.show(in: window)
     }
 
     private init() {}
+
+    public func openStoreLink() {
+        storeLink?.openUrl()
+    }
 
     /// Check if the app needs updates.
     @discardableResult public func checkForUpdates(
@@ -50,20 +72,26 @@ public final class AKUpdateManager {
     /// Check if the app needs updates.
     public func checkForUpdates(_ completion: UpdateAppHandler? = nil) {
         let completion = completion ?? defaultHandler
-        guard let info = Bundle.main.infoDictionary,
-              let currentVersionString = info["CFBundleShortVersionString"] as? String,
-              let identifier = info["CFBundleIdentifier"] as? String,
-              let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(identifier)") else { return completion(.none, nil) }
-        let currentVersion = AppVersion(version: currentVersionString)
+        guard let currentVersion = currentVersion,
+              let storeLink = storeLink,
+              let url = URL(string: storeLink) else { return completion(.none, nil) }
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             do {
-                if let error = error { return completion(.none, error) }
+                if let error = error {
+                    return completion(.none, error)
+                }
                 guard let data = data else { return completion(.none, nil) }
-                let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]
-                guard let result = (json?["results"] as? [Any])?.first as? [String: Any],
-                      let versionString = result["version"] as? String else { return completion(.none, nil) }
+                let json = try JSONSerialization.jsonObject(
+                    with: data,
+                    options: [.allowFragments]
+                ) as? [String: Any]
+                let result = (json?["results"] as? [Any])?.first as? [String: Any]
+                guard let versionString = result?["version"] as? String else { return completion(.none, nil) }
                 let version = AppVersion(version: versionString)
-                let updatePriority = self?.compareVersions(new: version, current: currentVersion)
+                let updatePriority = self?.compareVersions(
+                    new: version,
+                    current: currentVersion
+                )
                 completion(updatePriority ?? .none, nil)
             } catch {
                 completion(.none, error)
@@ -88,7 +116,7 @@ public final class AKUpdateManager {
     }
 }
 
-struct AppVersion {
+public struct AppVersion {
     let major: String
     let minor: String
     let patch: String
@@ -113,6 +141,19 @@ final class UpdaterViewController: UIViewController {
 
     deinit {
         retainedWindow = nil
+    }
+}
+
+extension String {
+    /// Returns true if the url is opened successfully.
+    @discardableResult func openUrl() -> Bool {
+        guard let url = URL(string: "\(self)"), UIApplication.shared.canOpenURL(url) else { return false }
+        guard #available(iOS 10.0, *) else {
+            UIApplication.shared.openURL(url)
+            return true
+        }
+        UIApplication.shared.open(url)
+        return true
     }
 }
 
